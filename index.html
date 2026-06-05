@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для тебе ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.page{
+    display:none;
+    width:100%;
+    text-align:center;
+    padding:20px;
+}
+
+.active{
+    display:block;
+}
+
+.card{
+    background:white;
+    max-width:700px;
+    margin:auto;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(0,0,0,0.2);
+}
+
+.envelope{
+    width:300px;
+    height:200px;
+    background:white;
+    margin:auto;
+    border-radius:15px;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:32px;
+    box-shadow:0 0 25px rgba(0,0,0,0.25);
+    transition:0.3s;
+}
+
+.envelope:hover{
+    transform:scale(1.05);
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+p{
+    line-height:1.8;
+    font-size:18px;
+}
+
+button{
+    margin-top:25px;
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.next{
+    background:#ff4f81;
+    color:white;
+}
+
+.yes{
+    background:#4CAF50;
+    color:white;
+}
+
+.no{
+    background:#f44336;
+    color:white;
+    position:relative;
+}
+
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
+
+.heart{
+    position:absolute;
+    font-size:30px;
+    animation:float 4s linear forwards;
+}
+
+@keyframes float{
+    from{
+        opacity:1;
+        transform:translateY(0);
+    }
+    to{
+        opacity:0;
+        transform:translateY(-400px);
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Сторінка 1 -->
+<div class="page active" id="page1">
+    <div class="envelope" onclick="openLetter()">
+        📩 Для тебе ❤️
+    </div>
+</div>
+
+<!-- Сторінка 2 -->
+<div class="page" id="page2">
+    <div class="card">
+        <h1>❤️</h1>
+
+        <p>
+        ...таким жахливим, нестерпним та дурним.
+        Я хочу працювати над собою і над нашими відносинами.
+        Я більше не уявляю своє життя без тебе.
+        <br><br>
+        Якби я міг повернутися на початок наших стосунків,
+        я б зробив усе, щоб не допустити тих помилок,
+        які нас поранили.
+        <br><br>
+        Якщо в тебе ще є до мене почуття і я досі маю
+        якесь значення у твоєму житті,
+        тоді гортай далі ➜
+        </p>
+
+        <button class="next" onclick="nextPage()">
+            Гортай далі ➜
+        </button>
+    </div>
+</div>
+
+<!-- Сторінка 3 -->
+<div class="page" id="page3">
+    <div class="card">
+        <h1>❤️ Підеш зі мною на побачення? ❤️</h1>
+
+        <p>
+            Обіцяю що це все не буде марно🥺
+        </p>
+
+        <button class="yes" onclick="acceptDate()">
+            Так 💖
+        </button>
+
+        <button class="no" id="noBtn">
+            Ні 😢
+        </button>
+    </div>
+</div>
+
+<!-- Сторінка 4 -->
+<div class="page" id="page4">
+    <div class="hearts" id="hearts"></div>
+
+    <div class="card">
+        <h1>🎉 Урааа! 🎉</h1>
+
+        <p>
+            Дякую, що дала нам шанс ❤️
+            <br><br>
+            Сьогодні, о 20:00 будь готова, вдягайся по домашньому, ми підемо туди, звідки почалася наша історія.
+        </p>
+    </div>
+</div>
+
+<script>
+function openLetter(){
+    document.getElementById("page1").classList.remove("active");
+    document.getElementById("page2").classList.add("active");
+}
+
+function nextPage(){
+    document.getElementById("page2").classList.remove("active");
+    document.getElementById("page3").classList.add("active");
+}
+
+function acceptDate(){
+    document.getElementById("page3").classList.remove("active");
+    document.getElementById("page4").classList.add("active");
+
+    setInterval(createHeart,200);
+}
+
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+    noBtn.style.position="absolute";
+    noBtn.style.left=Math.random()*(window.innerWidth-150)+"px";
+    noBtn.style.top=Math.random()*(window.innerHeight-80)+"px";
+});
+
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+
+    heart.style.left=Math.random()*window.innerWidth+"px";
+    heart.style.top=window.innerHeight+"px";
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },4000);
+}
+</script>
+
+</body>
+</html>
