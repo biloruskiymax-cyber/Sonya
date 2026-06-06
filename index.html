@@ -95,6 +95,21 @@ button{
     position:relative;
 }
 
+.auto-fade {
+    animation: fadeOut 20s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
 .hearts{
     position:absolute;
     width:100%;
@@ -169,7 +184,7 @@ button{
             Так 💖
         </button>
 
-        <button class="no" id="noBtn">
+        <button class="no auto-fade" id="noBtn">
             Ні 😢
         </button>
     </div>
@@ -207,14 +222,6 @@ function acceptDate(){
 
     setInterval(createHeart,200);
 }
-
-const noBtn=document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover",()=>{
-    noBtn.style.position="absolute";
-    noBtn.style.left=Math.random()*(window.innerWidth-150)+"px";
-    noBtn.style.top=Math.random()*(window.innerHeight-80)+"px";
-});
 
 function createHeart(){
     const heart=document.createElement("div");
