@@ -126,7 +126,7 @@ button{
 
 <!-- Сторінка 1 -->
 <div class="page active" id="page1">
-    <div class="envelope" onclick="openLetter()">
+    <div class="envelope" onclick="startMusic(); openLetter()">
         📩 Для тебе ❤️
     </div>
 </div>
@@ -229,6 +229,18 @@ function createHeart(){
     setTimeout(()=>{
         heart.remove();
     },4000);
+}
+</script>
+
+<audio id="bgMusic" loop>
+    <source src="Yiruma - River Flows In You.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function startMusic() {
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.4;
+    music.play().catch(err => console.log("Autoplay blocked:", err));
 }
 </script>
 
